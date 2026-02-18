@@ -333,6 +333,10 @@ Opens with the project title *"AI at Work: Are We Gaining Efficiency but Losing 
 
 Interactive slicers: **Role**, **Employee Persona**, **AI Leverage**, **Burnout Risk by Role**, and **Experience Range**. Setting any slicer to "All" reverts to the full dataset.
 
+### Dashboard Preview
+
+![AI at Work — Interactive Dashboard](4.Dashboard/Dashboard.png)
+
 ---
 
 ## Insights Summary
@@ -466,28 +470,28 @@ Interactive slicers: **Role**, **Employee Persona**, **AI Leverage**, **Burnout 
 ## 🗂️ Repository Structure
 
 ```
-Project Root
+DVA_Capstone/
 │
-├── RawDataset/
-│     └── dataset.csv
+├── 1.RawDataset/
+│     └── AI_Productivity_Features_Raw_Dataset.csv
 │
-├── CleanedDataset/
-│     ├── cleaned.csv
-│     └── data_cleaning_report.md
+├── 2.CleanedDataset/
+│     ├── Cleaned_Dataset.csv
+│     ├── Cleaning_log.csv
+│     └── cleaned.md
 │
-├── Calculations_PivotTables/
-│     ├── calculations.md
-│     └── pivot_table_exports/
+├── 3.Calculations_PivotTables/
+│     ├── Pivot_tables.csv
+│     └── calculations.md
 │
-├── Dashboard/
-│     └── dashboard.pdf
+├── 4.Dashboard/
+│     └── Dashboard.png
 │
-├── Presentation/
-│     └── presentation.pdf
+├── 5.Presentation/
+│     └── Presentation.pdf
 │
-├── Documentation/
-│     ├── ai_workforce_report.md
-│     └── documentation.pdf
+├── 6.Report/
+│     └── Report.pdf
 │
 └── README.md
 ```
