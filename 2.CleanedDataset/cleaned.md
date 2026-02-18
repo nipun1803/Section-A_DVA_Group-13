@@ -1,8 +1,8 @@
 # 📊 AI & Workforce Productivity — Data Cleaning & Quality Assurance Report
 
-**Project:** AI & Workforce Productivity Analytics  
-**Dataset Type:** Employee Productivity & AI Usage Records  
-**Prepared For:** Business Intelligence & Dashboarding  
+**Project:** AI & Workforce Productivity Analytics
+**Dataset Type:** Employee Productivity & AI Usage Records
+**Prepared For:** Business Intelligence & Dashboarding
 **Prepared By:** Data Engineering & Analytics Team
 
 ---
@@ -14,7 +14,7 @@ This document provides comprehensive technical documentation of the data quality
 - ✅ **100% elimination** of null values, placeholders, and inconsistencies
 - ✅ **Standardized categorical fields** — Role, Deadline Pressure Level
 - ✅ **Median-based imputation** for all numeric blanks to preserve distribution
-- ✅ **Derived columns** engineered for advanced analytics (Efficiency Leverage, Deep Work Balance, Learning Zone, Employee Persona, AI Leverage, Experience Range, Performance Sustainability Index)
+- ✅ **Derived columns** engineered for advanced analytics (Efficiency Leverage, Deep Work Balance, Learning Zone, Employee Persona, AI Leverage, Experience Range, Sustainability Rating)
 - ✅ **Production-grade data quality** suitable for executive dashboards
 
 ---
@@ -64,7 +64,7 @@ All transformations are documented to ensure **auditability, transparency, and c
 | **Employee Persona** | Needed behavioral classification | Created nested `IF()` logic based on automation & burnout |
 | **AI Leverage** | Raw numeric AI usage | Categorized into **Low / Medium / High** AI usage |
 | **Experience Range** | Raw numeric years | Grouped into **4-year buckets** using `FLOOR()` |
-| **Performance Sustainability Index** | Derived metric for sustainability | Formula: `Efficiency Leverage ÷ Burnout Risk Score` |
+| **Sustainability Rating** | Derived metric for sustainability | Formula: `=IF(O2=0,0,(E2*(10-K2))/(O2^2))` — penalizes high burnout |
 
 ---
 
@@ -200,12 +200,12 @@ Some categorical fields (Role, Deadline Pressure Level) had completely blank cel
 
 ---
 
-### 9.3 Performance Sustainability Index
+### 9.3 Sustainability Rating
 
 | Property | Value |
 |---|---|
-| **Formula** | `= Efficiency Leverage ÷ Burnout Risk Score` |
-| **Purpose** | Identifies whether high performance is sustainable or at risk of burnout |
+| **Formula** | `=IF(O2=0,0,(E2*(10-K2))/(O2^2))` |
+| **Purpose** | Composite score penalizing high burnout to evaluate long-term workforce viability |
 | **Interpretation** | High value = sustainable performance; Low value = performance at burnout cost |
 
 ---
@@ -218,12 +218,12 @@ Categorized raw **Learning Hours** into behavioral zones:
 
 | Zone | Criteria | Interpretation |
 |---|---|---|
-| **Risk** | Very low learning hours | Employee at risk of skill stagnation |
-| **Stable** | Moderate learning hours | Maintaining current skill level |
-| **Growth** | High learning hours | Actively upskilling |
-| **Overload** | Excessive learning hours | Potential burnout from over-learning |
+| **Risk** | <2 hrs/week | Employee at risk of skill stagnation |
+| **Stable** | ≤5 hrs/week | Maintaining current skill level |
+| **Growth** | ≤9 hrs/week | Actively upskilling |
+| **Overload** | >9 hrs/week | Potential burnout from over-learning |
 
-**Formula:** `=IFS(condition1, "Risk", condition2, "Stable", condition3, "Growth", condition4, "Overload")`
+**Formula:** `=IFS(L2<2,"Risk",L2<=5,"Stable",L2<=9,"Growth",TRUE,"Overload")`
 
 ---
 
@@ -238,7 +238,7 @@ Behavioral classification using **automation level** and **burnout risk**:
 | **Struggler** | Low automation, high burnout — needs support |
 | **Toxic High Performer** | High automation, high burnout — unsustainable output |
 
-**Formula:** Nested `IF()` logic based on thresholds for automation % and burnout risk score.
+**Formula:** `=IF(AND(E2>35,OR(O2>8,K2>3)),"Toxic High Performer",IF(E2>35,"Star Performer",IF(OR(O2>8,K2>3),"Struggler","Steady Worker")))`
 
 ---
 
@@ -248,9 +248,9 @@ Categorized raw **AI Tool Usage Hours** into usage tiers:
 
 | Category | Criteria |
 |---|---|
-| **Low** | Minimal AI tool usage |
-| **Medium** | Moderate AI tool usage |
-| **High** | Heavy AI tool usage |
+| **Low AI** | <5 hrs/week |
+| **Medium AI** | ≤12 hrs/week |
+| **High AI** | >12 hrs/week |
 
 ---
 
@@ -260,7 +260,7 @@ Grouped raw **Years of Experience** into structured buckets:
 
 | Formula | Example Output |
 |---|---|
-| `=FLOOR(years, 4)` | 0–3, 4–7, 8–11, 12–15, etc. |
+| `=FLOOR(years, 4)` | 0–4, 4–8, 8–12, 12–16, 16–20 |
 
 **Purpose:** Enables experience-based cohort analysis in dashboards.
 
@@ -268,16 +268,14 @@ Grouped raw **Years of Experience** into structured buckets:
 
 ## 11. Performance vs Health — Visual Insight
 
-<!-- ![Performance vs Health Chart](image1) -->
-
-### Key Observations from the Chart
+### Key Observations
 
 | Employee Persona | Avg Efficiency Leverage | Avg Burnout Risk Score | Insight |
 |---|---|---|---|
-| **Star Performer** | 8.07 | 5.46 | ✅ High output, manageable burnout — **sustainable** |
-| **Steady Worker** | 3.23 | 5.86 | ⚖️ Moderate output, moderate burnout — **balanced** |
-| **Struggler** | 2.71 | 9.00 | ⚠️ Low output, high burnout — **needs intervention** |
-| **Toxic High Performer** | 8.36 | 7.19 | 🔴 High output, high burnout — **unsustainable risk** |
+| **Star Performer** | 8.18 | 5.43 | ✅ High output, manageable burnout — **sustainable** |
+| **Steady Worker** | 3.15 | 5.80 | ⚖️ Moderate output, moderate burnout — **balanced** |
+| **Struggler** | 2.78 | 8.87 | ⚠️ Low output, high burnout — **needs intervention** |
+| **Toxic High Performer** | 6.52 | 8.35 | 🔴 High output, high burnout — **unsustainable risk** |
 
 ### Strategic Takeaways
 - **Star Performers** represent the ideal — high leverage with controlled burnout
@@ -320,7 +318,7 @@ Grouped raw **Years of Experience** into structured buckets:
 - ✅ **Efficiency KPIs** — Accurate and error-free
 - ✅ **Employee Persona Segmentation** — Behavioral classification
 - ✅ **AI Adoption Analysis** — Low/Medium/High usage tiers
-- ✅ **Burnout Risk Monitoring** — Sustainability index tracking
+- ✅ **Burnout Risk Monitoring** — Sustainability rating tracking
 - ✅ **Experience Cohort Analysis** — Structured 4-year buckets
 - ✅ **Deep Work Analytics** — Focus vs. collaboration balance
 - ✅ **Executive Dashboards** — Trustworthy visualizations
@@ -351,7 +349,7 @@ Every transformation includes:
 
 ## 15. Google Sheets Cleaning Workflow Summary
 
-**Tool Used:** Google Sheets (Web-based)  
+**Tool Used:** Google Sheets (Web-based)
 **Reason:** Accessibility, collaboration, familiar interface, built-in data cleaning features
 
 | Stage | Google Sheets Method | Key Formulas/Features Used |
@@ -401,5 +399,3 @@ The cleaned dataset meets enterprise standards for:
 - **Consistency** — Standardized formats and categories
 - **Validity** — All values within acceptable ranges
 - **Traceability** — Full audit trail documented
-
-<!-- **Status:** ✅ **APPROVED FOR PRODUCTION USE** -->

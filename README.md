@@ -1,4 +1,3 @@
-
 # 📊 AI at Work: Are We Gaining Efficiency but Losing Stability?
 
 **An Analysis of AI Adoption, Productivity, Burnout & Long-Term Workforce Sustainability**
@@ -11,7 +10,7 @@
 
 This capstone project analyzes whether increasing AI adoption in the workplace genuinely improves long-term productivity — or whether it quietly erodes human skills, deep thinking ability, and workforce stability. Through systematic data cleaning, KPI engineering, and visual analytics, we deliver insights that balance efficiency gains against sustainability risks.
 
-**Core Achievement:** Analyzed 5,600 employee records across 24 variables, engineered 6 custom KPIs, and built a 3-view interactive dashboard — revealing that **Medium AI usage (5–12 hrs/week) maximizes sustainable output**, while excessive AI adoption increases burnout and error rates without proportional productivity gains.
+**Core Achievement:** Analyzed 5,600 employee records across 21 variables, engineered 6 custom KPIs, and built a 3-view interactive dashboard — revealing that **Medium AI usage (5–12 hrs/week) maximizes sustainable output**, while excessive AI adoption increases burnout and error rates without proportional productivity gains.
 
 ---
 
@@ -74,15 +73,15 @@ This question guided our analytical framework and dashboard design, focusing on:
 
 | Team Member | Role | Contribution |
 |---|---|---|
-| Nipun Patlori | Dashboard Developer | Dashboard design, visualization, chart creation |
+| Nipun Patlori | Data Engineer | Data cleaning, KPI formula engineering, dashboard support |
 | Ranvendra Pratap Singh | Presentation Lead | PPT creation, presentation delivery |
 | Samarth Chaudhary | Lead Analyst | Dataset sourcing, lead analysis coordination |
-| Keshav | Report Writer | KPI analysis, report writing, documentation |
-| Ashutosh Singh | KPI Designer | Data cleaning, KPI formula engineering |
-| Aditya Raj | Data Engineer | Dataset sourcing, data preparation |
+| Keshav | KPI Designer | KPI analysis, report writing, documentation |
+| Ashutosh Singh | Dashboard Developer | Dashboard design, visualization, chart creation |
+| Aditya Raj | Report Writer | Dataset sourcing, report writing |
 
 **Institute:** Rishihood University
-**Faculty / Program:** Satyaki Das
+**Faculty / Program:** Aayushi Vashishth
 **Submission Date:** February 2026
 
 ---
@@ -103,7 +102,7 @@ This question guided our analytical framework and dashboard design, focusing on:
 | Attribute | Value |
 |---|---|
 | **Records** | 5,600 employee records |
-| **Columns** | 24 fields (15 raw + 9 derived KPIs) |
+| **Columns** | 21 fields (15 raw + 6 derived KPIs) |
 | **File Format** | CSV (UTF-8) |
 | **Data Type** | Cross-sectional employee survey |
 | **Domain** | AI & Workforce Productivity |
@@ -115,7 +114,7 @@ This question guided our analytical framework and dashboard design, focusing on:
 | Column | Data Type | Description | Example Values |
 |---|---|---|---|
 | Employee Id | String (UUID) | Unique employee identifier | `fab56130-fefc-47d6-ae7e-13e0eaa984c1` |
-| Role | Categorical | Employee job function | Analyst, Designer, Developer, Manager, Marketer, Others, Writer |
+| Role | Categorical | Employee job function | Analyst, Designer, Developer, Manager, Marketer, Writer |
 | Years of Experience | Numeric (Integer) | Professional experience in years | 1, 8, 14, 20 |
 | AI Tool Usage Hours Per Week | Numeric | Hours per week using AI tools | 0.0, 7.5, 15.9, 24.9 |
 | Tasks Automated Percent | Numeric (%) | Percentage of tasks automated via AI | 0.7, 28.0, 61.2 |
@@ -125,7 +124,7 @@ This question guided our analytical framework and dashboard design, focusing on:
 | Meeting Hours Per Week | Numeric | Total weekly meeting hours | 1.0, 8.5, 22.5 |
 | Collaboration Hours Per Week | Numeric | Weekly collaborative work hours | 2.60, 9.50, 18.00 |
 | Focus Hours Per Day | Numeric | Average daily uninterrupted deep work hours | 0.10, 2.84, 5.76 |
-| Work-Life Balance Score | Score (0���10) | Self-reported work-life balance indicator | 1, 5, 10 |
+| Work-Life Balance Score | Score (0–10) | Self-reported work-life balance indicator | 1, 5, 10 |
 | Learning Time Hours Per Week | Numeric | Weekly hours for learning/upskilling | 1.00, 5.40, 9.80 |
 | Burnout Risk Score | Score (0–10) | Composite burnout risk indicator | 1.00, 5.82, 10.00 |
 | Deadline Pressure Level | Categorical | Perceived deadline pressure | Low, Medium, High |
@@ -169,7 +168,7 @@ Numeric Validation → Feature Engineering → Categorization → Analytics-Read
 | Blank Handling (Numeric) | Fill missing values | `IF(ISBLANK(cell), MEDIAN(range), cell)` | 100% null elimination in numeric fields |
 | Blank Handling (Categorical) | Fill missing categories | `IF(ISBLANK(A2), "Others", PROPER(TRIM(A2)))` | Zero blank categorical values |
 | Numeric Validation | Ensure valid numbers | Format → Number, Data Validation | All numeric operations mathematically valid |
-| Feature Engineering | Create analytical KPIs | Custom formulas (6 KPIs) | 9 derived columns added |
+| Feature Engineering | Create analytical KPIs | Custom formulas (6 KPIs) | 6 derived columns added |
 | Categorization | Bucket continuous variables | `IFS()`, nested `IF()`, `FLOOR()` | Learning zones, personas, AI tiers, experience ranges |
 
 ### Data Cleaning Summary Table
@@ -204,7 +203,7 @@ Numeric Validation → Feature Engineering → Categorization → Analytics-Read
 | Divide-by-Zero Protection | ✅ Enforced | Guard clauses in all division formulas |
 | Categorization Logic | ✅ Clean | All zones, personas, and tiers assigned |
 
-**Result:** Production-ready dataset with 5,600 validated records and 24 columns
+**Result:** Production-ready dataset with 5,600 validated records and 21 columns
 
 📄 **Full Cleaning Methodology:** Complete data cleaning documentation available in repository
 
@@ -241,7 +240,7 @@ Numeric Validation → Feature Engineering → Categorization → Analytics-Read
 Our dashboard tracks strategic metrics across **5 analytical dimensions:**
 
 ### AI Adoption & Efficiency
-- **AI Tool Usage Hours by Role** — Average weekly AI hours across 7 roles
+- **AI Tool Usage Hours by Role** — Average weekly AI hours across 6 roles
 - **Tasks Automated Percent by Role** — Automation output per role
 - **AI Leverage Distribution** — Low / Medium / High AI tier breakdown
 - **Resource Consumption by Role** — Proportional AI budget usage
@@ -302,13 +301,13 @@ The dashboard translates raw employee data into clear, decision-ready visual int
 
 | View | Title | Charts Included | Primary Audience |
 |---|---|---|---|
-| **View 1** | Summary / Hero Dashboard | KPI Tiles: Total Employees (5,600), Avg AI Usage (1,053 hrs), Avg Productivity (908), Avg Burnout Risk (1,294) | C-Suite / Executives |
+| **View 1** | Summary / Hero Dashboard | KPI Tiles: Total Employees (5,600), Avg AI Usage (10.7 hrs/wk), Avg Tasks Automated (28.8%), Avg Burnout Risk (7.79/10) | C-Suite / Executives |
 | **View 2** | AI Adoption & Productivity / Performance vs Health Risk | 5 interactive charts with Role and Persona slicers | HR Managers / Team Leads |
 | **View 3** | Sustainability & Long-Term Risk | 4 charts: error trend, meetings vs focus, workforce composition, resource consumption | Operations / Strategy |
 
 ### View 1 — Summary / Hero Dashboard
 
-Opens with the project title *"AI at Work: Are We Gaining Efficiency but Losing Stability?"* accompanied by four KPI scorecards: **Total Employees (5,600)**, **Average AI Usage Hours (1,053)**, **Average Productivity (908 units/hr)**, and **Average Burnout Risk Score (1,294 aggregate)**. These tiles provide an immediate high-level snapshot that anchors all subsequent analysis.
+Opens with the project title *"AI at Work: Are We Gaining Efficiency but Losing Stability?"* accompanied by four KPI scorecards: **Total Employees (5,600)**, **Average AI Usage (10.7 hrs/week)**, **Average Tasks Automated (28.8%)**, and **Average Burnout Risk Score (7.79/10)**. These tiles provide an immediate high-level snapshot that anchors all subsequent analysis.
 
 ### View 2 — AI Adoption & Productivity / Performance vs Health Risk
 
@@ -325,10 +324,10 @@ Opens with the project title *"AI at Work: Are We Gaining Efficiency but Losing 
 
 ### View 3 — Sustainability & Long-Term Risk
 
-- **Error Rate by Experience Level:** Line chart across 5 experience bands — 8–12 year band peaks at 2.19%
+- **Error Rate by Experience Level:** Line chart across 5 experience bands — declining trend from 2.40% (0–4 yrs) to 1.92% (16–20 yrs)
 - **Meetings vs Focus vs Learning:** Stacked bar chart — Managers face 13.8 meeting hours crowding out 3.34 focus hours
-- **Workforce Composition Donut:** Developers lead at 23.11%
-- **Resource Consumption Pie:** Managers and Developers consume the largest share
+- **Workforce Composition Donut:** Developers lead at 23.2%
+- **Resource Consumption Pie:** Developers (27.0%) and Analysts (17.3%) consume the largest share
 
 ### Filters & Drilldowns
 
@@ -341,17 +340,17 @@ Interactive slicers: **Role**, **Employee Persona**, **AI Leverage**, **Burnout 
 | # | Insight Title | What It Means for the Organization |
 |---|---|---|
 | 1 | **AI Has a Productivity Ceiling** | Medium AI usage (5–12 hrs/week) maximizes output. Beyond this, productivity plateaus while burnout continues to climb. |
-| 2 | **High AI Usage ≠ Higher Quality** | High AI users record the highest average error rate (≈2.42%) vs Medium (2.08%) and Low (1.90%). Automation without review introduces quality risk. |
+| 2 | **High AI Usage Increases Error Rates** | High AI users record the highest average error rate (≈2.42%) vs Medium (2.07%) and Low (1.90%). Automation without review introduces quality risk. |
 | 3 | **Toxic High Performers Are a Hidden Liability** | A segment delivers strong output but operates at burnout levels above 8/10. High attrition risk with disproportionate organizational cost. |
 | 4 | **Managers Face the Most Severe Workload Compression** | ≈13.8 meeting hours/week and only ≈3.34 focus hours/day — the most acute Deep Work deficit of any role. Direct driver of elevated burnout (8.24). |
 | 5 | **Deep Work Balance Is a Leading Sustainability Indicator** | Roles with higher protected focus time consistently show stronger Sustainability Ratings. Focus hours are a structural input, not a luxury. |
-| 6 | **Developers Have Strong Sustainability Potential** | Despite the highest AI usage, Developers maintain competitive sustainability — AI genuinely augments structured technical tasks. |
+| 6 | **Developers Combine High AI Use with Reasonable Sustainability** | Despite the highest AI usage, Developers maintain competitive sustainability — AI genuinely augments structured technical tasks. |
 | 7 | **Learning Overload Reduces Sustainability** | Employees in the Overload zone (>9 hrs/week) show lower sustainability despite higher short-term productivity. Excessive learning demands are counterproductive. |
-| 8 | **Mid-Career Employees (8–12 Years) Carry Highest Error Risk** | Error rates peak at 2.19% — likely reflecting senior employees assigned highest complexity AI tasks without proportional review support. |
-| 9 | **Burnout Is Structurally Driven, Not Just AI-Driven** | Managers and Marketers carry the highest burnout despite not having the highest AI usage. Meetings, collaboration, and multi-stakeholder pressure are independent burnout drivers. |
-| 10 | **Resource Concentration Creates Fragility** | Managers and Developers together consume over 38% of organizational resources. Over-concentration creates dependency risk. |
-| 11 | **Balanced AI Users Achieve the Most Stable Outcomes** | Steady Workers — moderate AI, stable learning, controlled burnout — show the most consistent sustainability ratings. |
-| 12 | **Risk Is Concentrated, Not Distributed** | While headcount is spread across roles (11.5%–23.1%), performance instability concentrates in two segments: Managers (burnout) and Developers (volume). |
+| 8 | **Experience Progressively Reduces Error Rate** | Error rates decline consistently from 2.40% (0–4 yrs) to 1.92% (16–20 yrs). Senior employees are better positioned to verify and correct AI-generated output. |
+| 9 | **Burnout Is Role-Structural, Not Just AI-Driven** | Managers and Developers carry the highest burnout. For Managers, meeting load and collaboration demands are primary drivers; for Developers, AI usage volume plays a greater role. |
+| 10 | **Resource Concentration Creates Dependency Risk** | Developers and Analysts together account for over 45% of organizational resource consumption. Talent attrition in these groups would create disproportionate operational disruption. |
+| 11 | **Steady Workers Achieve the Most Stable Outcomes** | Employees with moderate AI usage, stable learning intensity, and controlled burnout show the most consistent sustainability ratings. |
+| 12 | **Risk Is Concentrated Despite Broad Headcount Distribution** | While headcount spans six roles, performance instability concentrates in Managers (burnout-driven) and Developers (volume-driven). Interventions should prioritize these two segments. |
 
 ---
 
@@ -363,15 +362,15 @@ Interactive slicers: **Role**, **Employee Persona**, **AI Leverage**, **Burnout 
 |---|---|
 | **Mapped Insight** | Insights 1 & 2 — Productivity ceiling and rising error rates at high AI usage |
 | **Recommended Action** | Define a recommended AI usage band of 5–12 hours per week. Introduce quarterly AI usage audits tracking both output and error rate trends. Flag roles exceeding the threshold without proportional quality improvement. |
-| **Business Impact** | Medium–High |
+| **Business Impact** | High |
 | **Feasibility** | Medium |
 
-### R2: Introduce Sustainability KPIs in Performance Reviews
+### R2: Embed Sustainability KPIs in Performance Reviews
 
 | Attribute | Details |
 |---|---|
 | **Mapped Insight** | Insights 3 & 11 — Toxic High Performers and Steady Worker advantage |
-| **Recommended Action** | Augment performance reviews with Sustainability Rating, burnout trajectory, and error trend metrics. Evaluate employees on how healthily and consistently they produce output over time. |
+| **Recommended Action** | Augment performance reviews with Sustainability Rating, burnout trajectory, and error trend metrics. Evaluate employees on how consistently and healthily they produce output — not volume alone. |
 | **Business Impact** | High |
 | **Feasibility** | High |
 
@@ -380,7 +379,7 @@ Interactive slicers: **Role**, **Employee Persona**, **AI Leverage**, **Burnout 
 | Attribute | Details |
 |---|---|
 | **Mapped Insight** | Insights 4 & 5 — Manager compression and Deep Work Balance as sustainability driver |
-| **Recommended Action** | Mandate minimum 3 uninterrupted focus hours per day. Cap weekly recurring meetings at 8 hours organization-wide. Introduce "no-meeting" blocks of at least two mornings per week, particularly for Managers and Marketers. |
+| **Recommended Action** | Mandate minimum 3 uninterrupted focus hours per day. Cap weekly recurring meetings at 8 hours organization-wide. Introduce "no-meeting" blocks of at least two mornings per week, particularly for Managers. |
 | **Business Impact** | High |
 | **Feasibility** | Medium |
 
@@ -393,21 +392,21 @@ Interactive slicers: **Role**, **Employee Persona**, **AI Leverage**, **Burnout 
 | **Business Impact** | Medium |
 | **Feasibility** | High |
 
-### R5: Create Error Rate Monitoring for Senior AI Users
+### R5: Create Prompt Transparency and Knowledge Documentation
 
 | Attribute | Details |
 |---|---|
-| **Mapped Insight** | Insight 8 — Mid-career employees carry the highest error rate |
-| **Recommended Action** | Implement role-based quality review triggers for 8–12 year experience employees classified as High AI users. Pair with structured peer review cycles and AI output verification training. |
-| **Business Impact** | Medium |
-| **Feasibility** | High |
+| **Mapped Insight** | Insight 3 — Toxic High Performers create knowledge silos via undocumented AI workflows |
+| **Recommended Action** | Require that productivity gains achieved via AI be documented as organizational assets. Establish a shared company prompt library to prevent knowledge silos created by Toxic High Performers. |
+| **Business Impact** | High |
+| **Feasibility** | Medium |
 
-### R6: Reduce Structural Burnout Drivers for Managers and Marketers
+### R6: Reduce Structural Burnout Drivers for Managers
 
 | Attribute | Details |
 |---|---|
-| **Mapped Insight** | Insights 4, 9 & 10 — Role-specific burnout and resource concentration risk |
-| **Recommended Action** | Conduct meeting audit for Manager and Marketer roles targeting 20–30% reduction. Delegate routine decision gates to Steady Worker profiles. Monitor burnout scores quarterly for these segments. |
+| **Mapped Insight** | Insights 4, 9 & 12 — Role-specific burnout and resource concentration risk |
+| **Recommended Action** | Conduct meeting audit for Manager roles targeting 20–30% reduction in weekly meeting load. Delegate routine decision gates to Steady Worker profiles to redistribute cognitive load. Monitor burnout scores quarterly. |
 | **Business Impact** | High |
 | **Feasibility** | Medium |
 
@@ -418,9 +417,9 @@ Interactive slicers: **Role**, **Employee Persona**, **AI Leverage**, **Burnout 
 | Category | Lever | Estimated Impact & Logic |
 |---|---|---|
 | **Cost Savings** | Reducing Toxic High Performer attrition | Replacing a skilled employee costs 50–200% of annual salary. If sustainable KPI frameworks prevent even 5% of burnout-driven exits across 5,600 employees (avg replacement cost 75% of $60K salary), the organization avoids approximately **$12.6M** in replacement costs annually. |
-| **Efficiency Gain** | Optimizing AI usage to the Medium AI band | If 20–25% of High AI employees reduce to Medium band, error rates projected to drop from 2.42% to ~2.08% — a **14% quality improvement**. Translates to fewer rework cycles and faster completion. |
-| **Service Improvement** | Protecting Deep Work time for key roles | Increasing focus hours for Managers by 1–2 hrs/day through meeting reduction is estimated to improve decision quality by **15–25%**, based on cognitive flow state research. |
-| **Risk Reduction** | Monitoring mid-career error rates | Peer review cycles for the 8–12 year cohort (highest error rate: 2.19%) can achieve a **20% error reduction**, preventing high-stakes output failures. |
+| **Quality Improvement** | Optimizing AI usage to the Medium AI band | If High AI employees reduce to Medium band, error rates projected to drop from 2.42% to ~2.07% — a **15% quality improvement**. Translates to fewer rework cycles and faster completion. |
+| **Performance Improvement** | Protecting Deep Work time for Managers | Increasing focus hours for Managers by 1–2 hrs/day through meeting reduction is estimated to improve decision quality by **15–25%**, based on cognitive flow state research. |
+| **Risk Reduction** | Implementing prompt transparency and AI documentation | Establishing a shared company prompt library reduces organizational dependency on individual employees' undocumented AI workflows, directly reducing continuity risk from Toxic High Performer attrition. |
 | **Sustainability** | Redesigning learning programmes | Shifting employees from Overload (>9 hrs/week) to Stable/Growth (3–7 hrs/week) reduces stress-driven absenteeism. Spaced learning improves retention by **40–60%** over sprint formats. |
 
 ---
@@ -431,7 +430,7 @@ Interactive slicers: **Role**, **Employee Persona**, **AI Leverage**, **Burnout 
 
 - The dataset represents a **single-time snapshot** — trend analysis is cross-sectional, not longitudinal
 - Behavioral variables (Burnout Risk Score, Work-Life Balance Score) are **model-generated estimates** and may carry subjectivity
-- The dataset is **publicly available on Kaggle** — direct extrapolation to specific organizations requires caution
+- The dataset is **publicly available on Kaggle** and is synthetic or anonymized — direct extrapolation to specific organizations requires caution
 
 ### Assumption Risks
 
@@ -562,7 +561,7 @@ Running the cleaning pipeline on the raw dataset will produce identical results 
 
 This project set out to answer a deceptively simple question: **as organizations adopt AI at scale, are they building sustainable capability or accumulating hidden fragility?**
 
-The analysis of 5,600 employee records across 24 variables, supported by 6 purpose-built KPIs and an interactive 3-view dashboard, delivers a clear and evidence-based answer.
+The analysis of 5,600 employee records across 15 variables, supported by 6 purpose-built KPIs and an interactive 3-view dashboard, delivers a clear and evidence-based answer.
 
 ### ✅ What's Working
 
@@ -589,11 +588,11 @@ The analysis of 5,600 employee records across 24 variables, supported by 6 purpo
 | Team Member | Dataset & Sourcing | Cleaning | KPI & Analysis | Dashboard | Report Writing | PPT | Overall Role |
 |---|---|---|---|---|---|---|---|
 | Samarth Chaudhary | ✓ | | | | ✓ | | Lead Analyst |
-| Aditya Raj | ✓ | | | ✓ | | | Data Engineer |
-| Ashutosh Singh | ✓ | ✓ | | | | | KPI Designer |
-| Patlori Nipun | | ✓ | | ✓ | | | Dashboard Developer |
-| Keshav | | ✓ | ✓ | | | | Report Writer |
-| Ranvendra Pratap Singh | | | ✓ | ✓ | | | Presentation Lead |
+| Aditya Raj | ✓ | | | ✓ | | | Report Writer |
+| Ashutosh Singh | ✓ | ✓ | | | | | Dashboard Developer |
+| Nipun Patlori | | ✓ | ✓ | | | | Data Engineer |
+| Keshav | | | ✓ | ✓ | | | KPI Designer |
+| Ranvendra Pratap Singh | | | | | ✓ | ✓ | Presentation Lead |
 
 **Declaration:** We confirm that the above contribution details are accurate and verifiable through version history and submitted project artifacts.
 

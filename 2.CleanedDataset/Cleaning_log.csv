@@ -1,0 +1,23 @@
+,,,
+,,Data Cleaning Log,
+,,,
+,,,
+Column Name,Issue Identified,Action Taken (Transformation),Formula/Method Used
+Role,"Mixed casing (e.g., MArKEtEr) and blank values.","Standardized text and filled nulls with ""Others"".","ARRAYFORMULA(IF(ISBLANK(B2:B47516), ""Others"", PROPER(TRIM(B2:B47516))))"
+AI Tool Usage,Missing values (Nulls).,Imputed missing values using the Median to prevent outlier skewing.,"ARRAYFORMULA(IF(D2:D55101="""", MEDIAN(D2:D55101), D2:D55101))"
+Tasks Automated %,Missing values.,Applied Median imputation to maintain distribution.,"ARRAYFORMULA(IF(E2:E55101="""", MEDIAN(E2:E55101), E2:E55101))"
+Collaboration Hrs,Blank or non-numeric values.,Replaced invalid entries with the calculated Median.,"ARRAYFORMULA(IF(OR(J2:J55101="""", NOT(ISNUMBER(J2:J55101))), MEDIAN(J2:J55101), J2:J55101))"
+Deadline Pressure,Inconsistent casing and nulls.,Standardized to Proper Case and filled nulls.,"ARRAYFORMULA(IF(LEN(TRIM(H2:H55101))=0, ""Others"", PROPER(H2:H55101)))"
+"Scores (WLB, Burnout)",Missing numeric scores.,Filled all missing scores in the range with column Medians.,"ARRAYFORMULA(IF(ISBLANK(N2:O55101), MEDIAN(N2:O55101), N2:O55101))"
+,,,
+,,,
+,,Feature Engineering & KPI Dictionary,
+Derived Column,Business Logic / Definition,Formula Used ,
+Efficiency Leverage,Ratio of automation to AI hours; measures AI ROI.,"IF(D2=0, 0, E2/D2)",
+Deep Work Balance,Measures focus time vs. meeting/collaboration load.,(Focus_Hrs * 5) - (Meeting_Hrs + Collab_Hrs),
+Performance Sustainability,A health-adjusted productivity metric (High = Sustainable).,Efficiency_Leverage / Burnout_Risk_Score,
+Learning Zone,Categorizes employees based on skill-up hours.,"IFS(L2<2, ""Risk"", L2<=5, ""Stable"", L2<=9, ""Growth"", TRUE, ""Overload"")",
+AI Leverage,Classification of AI adoption intensity.,"IF(D2<5, ""Low"", IF(D2<=12, ""Medium"", ""High AI""))",
+Employee Persona,Behavioral grouping based on automation and burnout.,"Nested IF() logic (Steady Worker, Struggler, etc.)",
+Experience Range,Grouping years into 4-year buckets for trend analysis.,"FLOOR(C2, 4) & ""-"" & FLOOR(C2, 4)+4",
+Future Risk,Predict about burnout Escalation Risk,((P2*0.4) + ((10 - O2) *0.3) + (N2*0.3)),
